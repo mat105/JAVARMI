@@ -12,13 +12,15 @@ public class Servidor {
 
 		System.out.println("SERVER INICIADO");
 		
-		try{
+		(new Contactador()).getClima(3435907);
+		
+		/*try{
 			LocateRegistry.createRegistry(1099);
 			System.out.println("REGISTRO CREADO");
 		}
 		catch(RemoteException re){
 			System.out.println("NO SE PUDO CREAR");
-		}
+		}*/
 		
 		
 		
