@@ -1,11 +1,15 @@
-import java.util.TreeMap;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 
-public class Ciudad {
-	private static TreeMap<Number, Ciudad> listado;
+
+public class Ciudad implements Comparable, Serializable{
+	public static ArrayList<Ciudad> listado = new ArrayList<Ciudad>();
 	
-	private int codigo;
-	private String nombre;
+	public int codigo;
+	public String nombre;
 	
 	
 	
@@ -23,7 +27,18 @@ public class Ciudad {
 		this.codigo = codigo;
 		this.nombre = nombre;
 		
-		Ciudad.listado.put(codigo, this);
+		Ciudad.listado.add(this);
+		//Arrays.sort(listado.toArray());
+		Collections.sort(Ciudad.listado);
 	}
+
+	@Override
+	public int compareTo(Object arg0) {
+		// TODO Auto-generated method stub
+		Ciudad carg = (Ciudad)arg0;
+		return this.nombre.compareTo(carg.nombre);
+	}
+	
+	
 	
 }

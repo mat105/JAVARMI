@@ -9,6 +9,6 @@ public interface ServidorFunciones extends Remote {
 	
 	ArrayList<String> listado() throws RemoteException;
 	
-	float clima() throws RemoteException;
+	Clima clima(int id) throws RemoteException;
 	
 }

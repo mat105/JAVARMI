@@ -8,12 +8,14 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class Contactador {
 	private String apikey = "d34e7ff512cceea4291f3629809e9b52";
 	
 	public Contactador(){
 	}
+
 	
 	
 	public String elem2str(Element elem){
@@ -47,6 +49,7 @@ public class Contactador {
 			String temp1 = elem1.getAttribute("name");
 			
 			clim = new Clima( Float.parseFloat(temp) , temp1);
+			
 			
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
