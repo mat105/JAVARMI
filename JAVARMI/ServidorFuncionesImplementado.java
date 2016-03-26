@@ -10,7 +10,6 @@ public class ServidorFuncionesImplementado extends UnicastRemoteObject implement
 	
 	@Override
 	public void agregar(int id, String nombre) throws RemoteException {
-		// TODO Auto-generated method stub
 		new Ciudad(id, nombre);
 	}
 	
@@ -18,20 +17,13 @@ public class ServidorFuncionesImplementado extends UnicastRemoteObject implement
 
 	@Override
 	public ArrayList<String> listado() throws RemoteException {
-		// TODO Auto-generated method stub
-		ArrayList<String> astr = new ArrayList<String>();
-		
-		for( int c = 0; c < Ciudad.listado.size(); c++ )
-			astr.add( Ciudad.listado.get(c).toString() );
-		
-		return astr;
+		return Ciudad.getListado();
 	}
 
 
 
 	@Override
-	public Clima clima(int id) throws RemoteException {
-		// TODO Auto-generated method stub
+	public Clima getClima(int id) throws RemoteException {
 		Clima climita = this.contacto.getClima(id);
 	
 		return climita;

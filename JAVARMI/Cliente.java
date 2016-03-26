@@ -6,13 +6,10 @@ public class Cliente {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) throws Exception {
-		// TODO Auto-generated method stub
-		ServidorFunciones sf = (ServidorFunciones)Naming.lookup("ServidorFunciones");
-		
-		//System.out.println( sf.clima(3435907) );
-		
-
+	public ServidorFunciones sf;
+	
+	
+	public void correr() throws Exception{
 		sf.agregar(524901, "Moscu");
 		sf.agregar(3435907, "Buenos Aires");
 		
@@ -20,7 +17,16 @@ public class Cliente {
 		for( String str : sf.listado() ){
 			System.out.println(str);
 		}
-		
+	}
+	
+	public Cliente() throws Exception{
+		sf = (ServidorFunciones)Naming.lookup("ServidorFunciones");
+	}
+	
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+		Cliente ncliente = new Cliente();
+		ncliente.correr();
 	}
 
 }

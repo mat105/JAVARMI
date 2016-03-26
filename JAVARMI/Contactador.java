@@ -17,16 +17,6 @@ public class Contactador {
 	}
 
 	
-	
-	public String elem2str(Element elem){
-	    Node child = elem.getFirstChild();
-	    if (child instanceof CharacterData) {
-	      CharacterData cd = (CharacterData) child;
-	      return cd.getData();
-	    }
-	    return "";
-	}
-	
 	public Clima parseXML(String xmlstring){
 		Clima clim = null;
 		

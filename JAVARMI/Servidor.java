@@ -15,31 +15,17 @@ public class Servidor {
 
 		System.out.println("SERVER INICIADO");
 		
-		//(new Contactador()).getClima(3435907);
-		
 		try{
 			LocateRegistry.createRegistry(1099);
-			//Registry registry = LocateRegistry.getRegistry();
-			
-			//System.out.println("REGISTRO CREADO");
-		
 
 			ServidorFuncionesImplementado sfi = new ServidorFuncionesImplementado();
-			
-			//ServidorFunciones sfd = (ServidorFunciones) UnicastRemoteObject.exportObject(sfi,0);
-			
-			//registry.bind("ServidorFunciones", sfi);
+
 			Naming.rebind("ServidorFunciones", sfi);
-			//registry
 		}
 		catch(RemoteException re){
 			re.printStackTrace();
 			System.out.println("NO SE PUDO CREAR");
 		}
-		/*} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 		
 		
 	}
