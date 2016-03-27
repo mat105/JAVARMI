@@ -45,7 +45,7 @@ public class Ciudad implements Comparable, Serializable{
 
 	public static Ciudad buscar(int id){
 		for( Ciudad ci : Ciudad.listado ){
-			System.out.println(ci.codigo);
+			//System.out.println(ci.codigo);
 			if(ci.codigo == id){
 				return ci;
 			}
