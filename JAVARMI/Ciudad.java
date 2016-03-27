@@ -12,15 +12,47 @@ public class Ciudad implements Comparable, Serializable{
 	public int codigo;
 	public String nombre;
 	
+	private Clima clima_cacheado = null;
+	private java.util.Date fecha_cacheado = null;
+	
 	
 	
 	@Override
 	public String toString() {
 		return "Ciudad [codigo=" + codigo + ", nombre=" + nombre + "]";
 	}
+	
+	public Clima cacheado(){
+		java.util.Date fecha_actual = new java.util.Date();
+		
+		if( this.clima_cacheado != null && ( (fecha_actual.getHours() - this.fecha_cacheado.getHours()) < 2 ) )
+		{
+			return this.clima_cacheado;
+		}
+		else
+		{
+			this.clima_cacheado = null;
+			this.fecha_cacheado = null;
+		}
+		
+		return null;
+	}
+	
+	public void cachear(Clima cli){
+		this.clima_cacheado = cli;
+		this.fecha_cacheado = new java.util.Date();
+	}
 
 	public static Ciudad buscar(int id){
-		return Ciudad.listado.get(id);
+		for( Ciudad ci : Ciudad.listado ){
+			System.out.println(ci.codigo);
+			if(ci.codigo == id){
+				return ci;
+			}
+		}
+		
+		return null;
+		//return Ciudad.listado.get(id);
 	}
 	
 	public static ArrayList<String> getListado()

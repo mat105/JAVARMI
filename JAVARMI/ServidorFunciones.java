@@ -11,4 +11,6 @@ public interface ServidorFunciones extends Remote {
 	
 	Clima getClima(int id) throws RemoteException;
 	
+	Ciudad buscarCiudad(int id) throws RemoteException;
+	
 }

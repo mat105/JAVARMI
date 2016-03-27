@@ -21,6 +21,16 @@ public class ServidorFuncionesImplementado extends UnicastRemoteObject implement
 	}
 
 
+	
+	
+
+	@Override
+	public Ciudad buscarCiudad(int id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return Ciudad.buscar(id);
+	}
+
+
 
 	@Override
 	public Clima getClima(int id) throws RemoteException {

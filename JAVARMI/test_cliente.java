@@ -21,7 +21,9 @@ public class test_cliente {
 		new Ciudad(3, "poa");
 		
 		assertEquals(Ciudad.getListado().size(),  4); // Agrega?
-		assertEquals(Ciudad.buscar(0).nombre, "aaa"); // Listado ordenado?
+		assertEquals(Ciudad.listado.get(0).nombre, "aaa"); // Listado ordenado?
+		
+		//assertNotNull( Ciudad.buscar(1),  )
 	}
 	
 	
@@ -30,9 +32,13 @@ public class test_cliente {
 		// Necesita al servidor corriendo.
 		Cliente abc = new Cliente();
 		
-		abc.sf.agregar(524901, "Buenos Aires");
+		abc.sf.agregar(524901, "Moscu");
+		
+
 		
 		assertNotNull( abc.sf.getClima(524901) );
+		//System.out.println( abc.sf.buscarCiudad(524901).cacheado().toString() );
+		assertNotNull( abc.sf.buscarCiudad(524901).cacheado() );
 		
 	}
 

@@ -56,35 +56,58 @@ public class Contactador {
 		return clim;
 	}
 	
+	
+	public Clima getClimaCacheado(Ciudad ciu){
+		if( ciu != null ){ // Cached
+			Clima cli = ciu.cacheado();
+			if( cli != null ){
+				return cli;
+			}
+		}
+		return null;
+	}
+	
 	public Clima getClima(int id){
-		Clima clim = null;
+		Ciudad ciu = Ciudad.buscar(id);
+		Clima clim = getClimaCacheado(ciu);
 		
-		String surl = "http://api.openweathermap.org/data/2.5/forecast/city?mode=xml&id=" + Integer.toString(id) + "&appid=" + apikey;
-		try {
-			URL where = new URL(surl);
-			HttpURLConnection conector = (HttpURLConnection) where.openConnection();
-			
-			conector.setRequestMethod("GET");
-			
-			BufferedReader in = new BufferedReader( new InputStreamReader(conector.getInputStream()) );
-			
-			String resp;
-			String xml_resp = "";
-			
-			while( (resp = in.readLine()) != null ){
-				xml_resp += resp;
+		if(clim != null){
+			return clim;
+		}
+		else
+		{
+			String surl = "http://api.openweathermap.org/data/2.5/forecast/city?mode=xml&id=" + Integer.toString(id) + "&appid=" + apikey;
+			try {
+				URL where = new URL(surl);
+				HttpURLConnection conector = (HttpURLConnection) where.openConnection();
+				
+				conector.setRequestMethod("GET");
+				
+				BufferedReader in = new BufferedReader( new InputStreamReader(conector.getInputStream()) );
+				
+				String resp;
+				String xml_resp = "";
+				
+				while( (resp = in.readLine()) != null ){
+					xml_resp += resp;
+				}
+				
+				in.close();
+				
+				//System.out.println(xml_resp);
+				clim = parseXML(xml_resp);
+				
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e){
+				e.printStackTrace();
+			}
+		
+			if(ciu!= null){
+				ciu.cachear(clim);
 			}
 			
-			in.close();
-			
-			//System.out.println(xml_resp);
-			clim = parseXML(xml_resp);
-			
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e){
-			e.printStackTrace();
 		}
 		
 		return clim;
